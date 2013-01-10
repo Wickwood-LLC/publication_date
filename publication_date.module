@@ -108,3 +108,45 @@ function publication_date_views_api() {
     'path' => drupal_get_path('module', 'publication_date') . '/includes',
   );
 }
+
+/**
+ * Implementation of hook_form_alter().
+ * Display the publication date on the node edit form
+ * @note: This wont work where you have displaysuite/rel enabled
+ */
+function publication_date_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['type']) && isset($form['#node']) && $form['type']['#value'] . '_node_form' == $form_id) {
+    $node = node_load($form["nid"]["#value"]);
+    $form['author']['pubdate'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Published on'),
+      '#maxlength' => 25,
+      '#description' => t('Format: %time. Leave blank to use the time of form submission.', array('%time' => format_date(REQUEST_TIME, 'custom', 'Y-m-d H:i:s O'))),
+    );
+    if ($node->published_at) {
+      $form['author']['pubdate']['#default_value'] = format_date($node->published_at, 'custom', 'Y-m-d H:i:s O');
+    }
+    $form['#validate'][] = 'publication_date_pubdate_validate';
+    $form['#submit'][] = 'publication_date_pubdate_submit';
+  }
+}
+
+/**
+ * Validate the published date input
+ */
+function publication_date_pubdate_validate($form, &$form_state) {
+  // Validate the "authored on" field. As of PHP 5.1.0, strtotime returns FALSE instead of -1 upon failure.
+  if (!empty($form_state['values']['pubdate']) && strtotime($form_state['values']['pubdate']) <= 0) {
+    form_set_error('pubdate', t('You have to specify a valid date for the published on field.'));
+  }
+}
+
+/**
+ * Update the published date
+ */
+function publication_date_pubdate_submit($form, &$form_state) {
+  db_query("UPDATE {publication_date} SET published_at = :date WHERE nid = :nid", array(
+   ':date' => strtotime($form_state['values']['pubdate']),
+   ':nid' => $form_state['values']['nid'],
+  ));
+}
