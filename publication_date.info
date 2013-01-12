@@ -7,7 +7,7 @@ dependencies[] = views
 
 files[] = publication_date.install
 files[] = publication_date.module
-files[] = includes/tokens/publication_date.tokens.inc
+files[] = publication_date.tokens.inc
 files[] = includes/views/publication_date.views.inc
 files[] = tests/publication_date.test
 
