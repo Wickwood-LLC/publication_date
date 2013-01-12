@@ -109,7 +109,7 @@ function _publication_date_get_date($nid) {
 function publication_date_views_api() {
   return array(
     'api' => 3,
-    'path' => drupal_get_path('module', 'publication_date') . '/includes',
+    'path' => drupal_get_path('module', 'publication_date') . '/includes/views',
   );
 }
 
