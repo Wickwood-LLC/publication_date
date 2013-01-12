@@ -42,5 +42,61 @@ function publication_date_views_data() {
     ),
   );
 
+  // Bogus fields for aliasing purposes.
+
+  $data['publication_date']['published_fulldate'] = array(
+    'title' => t('Published date'),
+    'help' => t('Date in the form of CCYYMMDD.'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_fulldate',
+    ),
+  );
+
+  $data['publication_date']['published_year_month'] = array(
+    'title' => t('Published year + month'),
+    'help' => t('Date in the form of YYYYMM.'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_year_month',
+    ),
+  );
+
+  $data['publication_date']['published_year'] = array(
+    'title' => t('Published year'),
+    'help' => t('Date in the form of YYYY.'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_year',
+    ),
+  );
+
+  $data['publication_date']['published_month'] = array(
+    'title' => t('Published month'),
+    'help' => t('Date in the form of MM (01 - 12).'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_month',
+    ),
+  );
+
+  $data['node']['published_day'] = array(
+    'title' => t('Published day'),
+    'help' => t('Date in the form of DD (01 - 31).'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_day',
+    ),
+  );
+
+  $data['node']['published_week'] = array(
+    'title' => t('Published week'),
+    'help' => t('Date in the form of WW (01 - 53).'),
+    'argument' => array(
+      'field' => 'created',
+      'handler' => 'views_handler_argument_node_created_week',
+    ),
+  );
+
   return $data;
 }
