@@ -17,7 +17,7 @@
 function publication_date_views_data() {
   $data = array();
 
-  $data['publication_date']['table']['group'] = t('Node');
+  $data['publication_date']['table']['group'] = t('Content');
 
   // how is the scheduler table linked to the nodes
   $data['publication_date']['table']['join']['node'] = array(
