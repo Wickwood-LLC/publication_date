@@ -28,7 +28,7 @@ function publication_date_views_data() {
   // description of the fields (columns)
   $data['publication_date']['published_at'] = array(
     'title' => t('Published at'),
-    'help' => t('Date/time on which the article has been published'),
+    'help' => t('Date and time on which the article has been published.'),
     'field' => array(
       'handler' => 'views_handler_field_date',
       'click sortable' => TRUE,
