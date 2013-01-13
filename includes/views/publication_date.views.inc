@@ -43,6 +43,24 @@ function publication_date_views_data() {
   );
 
   // Bogus fields for aliasing purposes.
+  
+  $data['publication_date']['published_at_date_hierarchical'] = array(
+    'title' => t('Published date'),
+    'help' => t('Date in the form of CCYY/MM/DD.'),
+    'argument' => array(
+      'field' => 'published_at',
+      'handler' => 'publication_date_handler_argument_node_created_fulldate',
+    ),
+  );
+  
+  $data['publication_date']['published_at_year_month_hierarchical'] = array(
+    'title' => t('Published year + month'),
+    'help' => t('Date in the form of YYYY/MM.'),
+    'argument' => array(
+      'field' => 'published_at',
+      'handler' => 'views_handler_argument_node_created_year_month',
+    ),
+  );
 
   $data['publication_date']['published_at_fulldate'] = array(
     'title' => t('Published date'),

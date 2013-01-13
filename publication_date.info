@@ -9,5 +9,6 @@ files[] = publication_date.install
 files[] = publication_date.module
 files[] = publication_date.tokens.inc
 files[] = includes/views/publication_date.views.inc
+files[] = includes/views/publication_date_handler_argument_dates_various.inc
 files[] = tests/publication_date.test
 
